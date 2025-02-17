@@ -6,5 +6,5 @@
         $conexao = new mysqli(Servidor, Usuario, Senha, DataBase, Porta);
     } catch (\Throwable $th) {
         ?> <script>alert('Erro na Conexao')</script> <?php
-        die("Erro conexão BD: ". $th->getMessage());
+        die("Erro conexão: ". $th->getMessage());
     }
