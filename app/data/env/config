@@ -1,0 +1,23 @@
+<?php 
+
+    if(isset($_SESSION)){
+        session_start();
+    }
+
+    if(empty($_SESSION['cnpj'])){
+        $DataBase = "f_45052914806" ;
+    }else{
+        $DataBase = $_SESSION['cnpj'] ;
+    }
+    
+    if(empty($_SESSION['usuario'])){
+        $User = "root";
+    }else{
+        $User = $_SESSION['usuario'];
+    }
+    
+    define("Servidor", "Localhost");
+    define("Usuario", $User);
+    define("Senha", "Qwe1234241+-+");
+    define("DataBase", $User.$DataBase);
+    define("Porta", "3310");

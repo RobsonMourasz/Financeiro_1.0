@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app/assets/css/login.css">
+    <title>Acesso ao Sistema - Login</title>
+</head>
+
+<body>
+
+    <div class="content-login">
+        <div class="tela-login">
+            <form action="app/assets/php/Request/Login.php" method="post">
+
+                <div class="group-input">
+                    <input type="text" id="login" name="login" class="input-text" required>
+                    <small class="label-input">Login</small>
+                </div> <!--group-input-->
+
+                <div class="group-input">
+                    <input type="password" id="password" name="password" class="input-text" required minlength="4" maxlength="10">
+                    <small class="label-input">Senha</small>
+                </div> <!--group-input-->
+
+                <div class="btn">
+                    <input type="submit" value="Acessar">
+                </div>
+
+            </form> <!--form-->
+        </div> <!--tela-login-->
+    </div> <!--content-login-->
+
+    <script>
+
+        document.querySelectorAll(".label-input").forEach(label => {
+            label.addEventListener("click", () => {
+                const inputSelect = label.previousElementSibling;
+                if (inputSelect){
+                    inputSelect.focus();
+                }
+            })
+        })
+        document.querySelectorAll(".input-text").forEach(input => {
+            input.addEventListener("focus", () => {
+                const inputSelecionado = input.nextElementSibling;
+                inputSelecionado.style = "top: -5%; fontSize: 14px; color:#333; background-color: #f3f3f3; border-radius: 5px";
+
+            });
+
+            input.addEventListener("blur", () => {
+                if (input.value === "") {
+                    const inputSelecionado = input.nextElementSibling;
+                    inputSelecionado.style = "top: 50%; fontSize: 16px; color:#aaa; background-color: transparent; border-radius: 0";
+                }
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>
