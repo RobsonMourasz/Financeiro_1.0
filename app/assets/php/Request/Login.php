@@ -4,7 +4,6 @@
     if (isset($_POST)) {
         $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         $senha = $_POST['senha'];
-        $tempPassword = password_hash($senha, PASSWORD_DEFAULT);
 
         try {
             $BuscaUsuario = $conexao->query(" SELECT * FROM caduser WHERE EmailUser like '%$email%' ");
@@ -12,15 +11,28 @@
             if ($BuscaUsuario->num_rows > 0) {
                 $User = $BuscaUsuario->fetch_all(MYSQLI_ASSOC); 
                 $verifyPassword = $conexao->query("SELECT * FROM caduser WHERE EmailUser like '%$email%'");
-                $verifyPassword = $verifyPassword->fetch_all(MYSQLI_ASSOC);
-                if(password_verify($tempPassword, $verifyPassword['SenhaUser'])){
-                    ?> <script> location.assign("app/index.php") </script> <?php
+                $verifyPassword = $verifyPassword->fetch_assoc();
+                if(password_verify($senha, $verifyPassword['SenhaUser'])){
+                    session_start();
+                    $_SESSION['Cnpj'] = $verifyPassword['NomeUser'];
+                    $_SESSION['Usuario'] = $verifyPassword['cpf_cnpj'];
+                    $_SESSION['Nivel'] = $verifyPassword['Nivel'];
+                    $_SESSION['SessaoAtiva'] = "S";
+                    ?> <script> location.assign("../../../Index.php") </script> <?php
                 }else{
-                    ?> <script> alert("Senha incorreta!") </script> <?php        
+                    ?> <script> 
+                            alert("Senha incorreta!") 
+                            location.assign("../../../../index.html")
+                        </script> 
+                    <?php        
                 }
 
             }else{
-            ?> <script> alert("Usuario não encontrado!") </script> <?php
+            ?> <script> 
+                    alert("Usuario não encontrado!") 
+                    location.assign("../../../../index.html")
+                </script> 
+            <?php
             }
 
         } catch (\Throwable $th) {
