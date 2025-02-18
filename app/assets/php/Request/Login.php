@@ -6,10 +6,12 @@
         $senha = $_POST['senha'];
 
         try {
-            $BuscaUsuario = $conexao->query(" SELECT * FROM caduser WHERE EmailUser like '%$email%' ");
+            $conexao->select_db(Usuario."_"."dados");
+            $BuscaUsuario = $conexao->query(" SELECT * FROM cadlogin WHERE Email like '%$email%' ");
 
             if ($BuscaUsuario->num_rows > 0) {
-                $User = $BuscaUsuario->fetch_all(MYSQLI_ASSOC); 
+                $User = $BuscaUsuario->fetch_assoc(); 
+                $conexao->select_db(Usuario."_".$User['Cpf_Cnpj']);
                 $verifyPassword = $conexao->query("SELECT * FROM caduser WHERE EmailUser like '%$email%'");
                 $verifyPassword = $verifyPassword->fetch_assoc();
                 if(password_verify($senha, $verifyPassword['SenhaUser'])){
@@ -18,7 +20,7 @@
                     $_SESSION['Usuario'] = $verifyPassword['cpf_cnpj'];
                     $_SESSION['Nivel'] = $verifyPassword['Nivel'];
                     $_SESSION['SessaoAtiva'] = "S";
-                    ?> <script> location.assign("../../../Index.php") </script> <?php
+                    ?> <script> location.assign("../../../index.php") </script> <?php
                 }else{
                     ?> <script> 
                             alert("Senha incorreta!") 

@@ -14,6 +14,14 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
+
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- bootstrap CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -47,7 +55,6 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
 
   <body>
     <div class="wrapper">
-      <!-- Sidebar -->
       <div class="sidebar" data-background-color="dark">
         <div class="sidebar-logo">
           <!-- Logo Header -->
@@ -135,7 +142,22 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
                   </ul>
                 </div>
               </li> <!-- nav-item modelo menu-->
+
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section" style="border-bottom: 1px solid rgba(238, 234, 234, 0.51); margin:0 .5em"></h4>
+
               </li>
+
+              <li class="nav-item">
+                <a href="?page=logoff">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <p>Sair</p>
+                </a>
+              </li>
+
             </ul> <!-- nav nav-secondary -->
           </div> <!-- sidebar-content -->
         </div> <!--sidebar-wrapper scrollbar scrollbar-inner-->
@@ -170,16 +192,19 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
         <div class="container">
           <?php
           // Obter a URL completa dinamicamente
-          $url = (isset($_GET['page']) && !empty($_GET['page']) ? $_GET['page'] : "Dashboard");
-          $NomeCaminho = __DIR__ . "/pages/" . $url . ".html";
-
-          if (file_exists($NomeCaminho)) {
-            include_once $NomeCaminho;
+          if (isset($_GET['page']) && $_GET['page'] == "logoff") {
+            ?> <script>location.assign("assets/php/Request/logoff.php")</script> <?php
           }else{
-            $Error404 = __DIR__ . '/pages/404.html';
-            include_once $Error404;
+            $url = (isset($_GET['page']) && !empty($_GET['page']) ? $_GET['page'] : "Dashboard");
+            $NomeCaminho = __DIR__ . "/pages/" . $url . ".html";
+  
+            if (file_exists($NomeCaminho)) {
+              include_once $NomeCaminho;
+            } else {
+              $Error404 = __DIR__ . '/pages/404.html';
+              include_once $Error404;
+            }
           }
-
           ?>
         </div> <!-- container -->
 
@@ -254,7 +279,7 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
         </div>
       </div>
       <!-- End Custom template -->
-    </div>
+    </div> <!-- wrapper -->
     <!--   Core JS Files   -->
     <script src="assets/js/core/jquery-3.7.1.min.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
