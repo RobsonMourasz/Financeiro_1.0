@@ -13,6 +13,10 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
     <title>Bem Vindo - RM Sistemas</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+    <!-- Meu CSS -->
+    <link rel="stylesheet" href="assets/css/meucssbootstrap.css">
+
+
 
 
     <!-- bootstrap icon -->
@@ -309,6 +313,10 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="assets/js/setting-demo.js"></script>
     <script src="assets/js/demo.js"></script>
+
+    <!-- Meu JS -->
+    <script src="assets/js/meujs.js"></script>
+
     <script>
       $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
         type: "line",

@@ -10,10 +10,10 @@
         $DataBase = $_SESSION['cnpj'] ;
     }
     
-    $User = "if0_38300666";
+    $User = "root";
     
-    define("Servidor", "sql207.infinityfree.com");
+    define("Servidor", "Localhost");
     define("Usuario", $User);
-    define("Senha", "w3G9n7fZrPvk4C");
+    define("Senha", "Qwe1234241+-+");
     define("DataBase", $User.$DataBase);
-    define("Porta", "3306");
+    define("Porta", "3310");

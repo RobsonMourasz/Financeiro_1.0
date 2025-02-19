@@ -1,0 +1,9 @@
+.label-input-focus{
+    position: absolute;
+    top: 0;
+    transition: 1s ease;
+}
+
+.label-input-focus-active{
+    bottom: 20%;
+}
