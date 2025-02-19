@@ -1,9 +1,9 @@
 .label-input-focus{
-    position: absolute;
-    top: 0;
+    opacity: 0;
     transition: 1s ease;
 }
 
-.label-input-focus-active{
-    bottom: 20%;
+#container-pesquisa{
+    opacity: 0;
+    transition: 1s ease;
 }

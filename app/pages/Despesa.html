@@ -11,25 +11,62 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-6 col-md-3">
-                    <input type="date" name="" id="" class="form-control">
-                    <small class="label-input-focus">Data inicial</small>
-                </div>
-                <div class="col-6 col-md-3">
-                    <input type="date" name="" id="" class="form-control">
-                </div>
-                <div class="col-6 col-md-3">
-                    <input type="date" name="" id="" class="form-control">
-                </div>
-                <div class="col-6 col-md-3">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <button id="btn-pesquisa" class="btn"><i class="bi bi-funnel-fill opacity-75"></i></button>
+            </div>
+        </div>
+        <div id="container-pesquisa" class="container bg-dark d-none">
+            <form class="row text-white bg-dark opacity-75 p-2 d-flex flex-row justify-content-between mx-2">
+                <div class="col-10 col-md-3 m-2">
+                    <small class="label-input-focus">Data Inicial</small>
                     <input type="date" name="" id="" class="form-control">
                 </div>
-                <div class="col-6 col-md-3">
+                <div class="col-10 col-md-3 m-2">
+                    <small class="label-input-focus">Data Final</small>
                     <input type="date" name="" id="" class="form-control">
                 </div>
-            </div> <!-- row -->
+                <div class="col-10 col-md-4 m-2">
+                    <small class="label-input-focus">Descrição</small>
+                    <input type="text" name="" id="" class="form-control">
+                </div>
+                <div class="col-10 col-md-3 m-2">
+                    <small class="label-input-focus">Situação</small>
+                    <select name="situacao" id="pesq_situacao" class="form-control">
+                        <option value="todos" selected>Todos</option>
+                        <option value="aberto">Aberto</option>
+                        <option value="confirmado">Confirmado</option>
+                    </select>
+                </div>
+                <div class="col-10 col-md-3 m-2">
+                    <small class="label-input-focus">Categoria</small>
+                    <select name="situacao" id="pesq_situacao" class="form-control">
+                        <option value="todos" selected>Todos</option>
+                    </select>
+                </div>
+                <div class="col-10 col-md-3 my-auto pt-4 d-flex justify-content-end .align-items-center">
+                    <button class="btn btn-danger">Pesquisar</button>
+                </div>
+            </form>
         </div> <!-- container form-pesquisa -->
     </div><!-- row page-inner-->
+    <script src="assets/js/Funcoes.Feitas.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let input_date = document.querySelectorAll("input[type='date']")
+            input_date.forEach(elementoData => {
+                elementoData.value = formatDate("");
+            });
+        });
+
+        document.getElementById("btn-pesquisa").addEventListener("click", ()=>{
+            if(document.getElementById("container-pesquisa").classList.contains("d-none")){
+                document.getElementById("container-pesquisa").style.opacity = "1"
+                document.getElementById("container-pesquisa").classList.remove("d-none")
+            }else{
+                document.getElementById("container-pesquisa").style.opacity="0"
+                document.getElementById("container-pesquisa").classList.add("d-none") 
+            }
+        });
+    </script>
 </div><!-- page-inner -->

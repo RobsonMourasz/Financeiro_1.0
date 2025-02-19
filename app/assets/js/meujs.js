@@ -1,14 +1,25 @@
 document.querySelectorAll("input").forEach(inputSelecionado => {
     inputSelecionado.addEventListener("focus", () => {
-        const labelSelect = inputSelecionado.nextElementSibling;
-        const topInput = inputSelecionado.getBoundingClientRect();
-        console.log("asdasd" + topInput)
-        labelSelect.style = `top:${topInput+10}%`;
+        const labelSelect = inputSelecionado.previousElementSibling;
+        labelSelect.style = `opacity: 1;`;
     })
 });
 document.querySelectorAll("input").forEach(inputSelecionado => {
     inputSelecionado.addEventListener("focusout", () => {
-        const labelSelect = inputSelecionado.nextElementSibling;
-        labelSelect.style = "top: 0;";
+        const labelSelect = inputSelecionado.previousElementSibling;
+        labelSelect.style = `opacity: 0;`;
+    })
+})
+
+document.querySelectorAll("select").forEach(inputSelecionado => {
+    inputSelecionado.addEventListener("focus", () => {
+        const labelSelect = inputSelecionado.previousElementSibling;
+        labelSelect.style = `opacity: 1;`;
+    })
+});
+document.querySelectorAll("select").forEach(inputSelecionado => {
+    inputSelecionado.addEventListener("focusout", () => {
+        const labelSelect = inputSelecionado.previousElementSibling;
+        labelSelect.style = `opacity: 0;`;
     })
 })
