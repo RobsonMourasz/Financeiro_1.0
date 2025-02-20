@@ -192,8 +192,10 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
           </div> <!--main-header-logo-->
 
         </div> <!--main-header-->
+        <div class="tela-carregamento d-none"><div class="carregando-icone"> <!-- carregando-icone --> </div></div> <!-- tela-carregamento -->
 
         <div class="container">
+          
           <?php
           // Obter a URL completa dinamicamente
           if (isset($_GET['page']) && $_GET['page'] == "logoff") {

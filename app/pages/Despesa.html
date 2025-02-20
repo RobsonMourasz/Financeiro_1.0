@@ -7,7 +7,8 @@
                     <h6 class="op-7 mb-2">Cadastre suas despesas</h6>
                 </div>
                 <div class="ms-md-auto py-2 py-md-0">
-                    <button class="btn btn-danger "><i class="bi bi-plus-circle"></i> Cadastrar</button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalCadastro"><i
+                            class="bi bi-plus-circle"></i> Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -16,31 +17,31 @@
                 <button id="btn-pesquisa" class="btn"><i class="bi bi-funnel-fill opacity-75"></i></button>
             </div>
         </div>
-        <div id="container-pesquisa" class="container bg-dark d-none">
-            <form class="row text-white bg-dark opacity-75 p-2 d-flex flex-row justify-content-between mx-2">
+        <div id="container-pesquisa" class="container bg-dark d-none container-pesquisa">
+            <form id="formPesquisar" class="row text-white bg-dark opacity-75 p-2 d-flex flex-row justify-content-between mx-2">
                 <div class="col-10 col-md-3 m-2">
                     <small class="label-input-focus">Data Inicial</small>
-                    <input type="date" name="" id="" class="form-control">
+                    <input type="date" name="data_inicial" id="data_inicial" class="form-control">
                 </div>
                 <div class="col-10 col-md-3 m-2">
                     <small class="label-input-focus">Data Final</small>
-                    <input type="date" name="" id="" class="form-control">
+                    <input type="date" name="data_final" id="data_final" class="form-control">
                 </div>
                 <div class="col-10 col-md-4 m-2">
                     <small class="label-input-focus">Descrição</small>
-                    <input type="text" name="" id="" class="form-control">
+                    <input type="text" name="Descricao" id="pesDescricao" class="form-control">
                 </div>
                 <div class="col-10 col-md-3 m-2">
                     <small class="label-input-focus">Situação</small>
-                    <select name="situacao" id="pesq_situacao" class="form-control">
-                        <option value="todos" selected>Todos</option>
-                        <option value="aberto">Aberto</option>
-                        <option value="confirmado">Confirmado</option>
+                    <select name="Confirmada" id="pesqConfirmada" class="form-control">
+                        <option value="" selected>Todos</option>
+                        <option value="N">Aberto</option>
+                        <option value="S">Confirmado</option>
                     </select>
                 </div>
                 <div class="col-10 col-md-3 m-2">
                     <small class="label-input-focus">Categoria</small>
-                    <select name="situacao" id="pesq_situacao" class="form-control">
+                    <select name="situacao" id="pesqCa" class="form-control">
                         <option value="todos" selected>Todos</option>
                     </select>
                 </div>
@@ -49,24 +50,105 @@
                 </div>
             </form>
         </div> <!-- container form-pesquisa -->
+
     </div><!-- row page-inner-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- MODAL CADASTRAR  -->
+    <div class="modal fade" id="modalCadastro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Cadastro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"
+                        onclick="limparInputs('formCadastro')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCadastro" method="post">
+                        <small id="alertaCadastro-mensagem" align="center"></small>
+
+                        <div class="col">
+                            <div class="row input-group mb-3 d-flex">
+                                <span class="input-group-text">Descrição</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="row input-group mb-3">
+                                <span class="input-group-text">Valor R$ </span>
+                                <input type="number" class="form-control" placeholder="R$ 0,00">
+                            </div>
+                            <div class="row input-group mb-3">
+                                <span class="input-group-text">Vencimento / Confirmação</span>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="row input-group mb-3">
+                                <span class="input-group-text">Conta</span>
+                                <select name="" id="" class="form-control">
+                                    <option value="">Selecione a Conta</option>
+                                </select>
+                            </div>
+                            <div class="row input-group mb-3">
+                                <span class="input-group-text">Categoria</span>
+                                <select name="" id="" class="form-control">
+                                    <option value="">Selecione Categoria</option>
+                                </select>
+                            </div>
+                            <div class="form-check form-switch mb-3 ">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="form-check-label" for="cad_fixa" style="cursor: pointer;"> Fixa</label>
+                                        <input class="form-check-input duo-checked" type="checkbox" id="cad_fixa" style="cursor: pointer;">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-check-label" for="cad_parcelado" style="cursor: pointer;"> Parcelado</label>
+                                        <input class="form-check-input duo-checked" type="checkbox" id="cad_parcelado" style="cursor: pointer;">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-check-label" for="cad_situacao" style="cursor: pointer;"> Confirmado</label>
+                                        <input class="form-check-input" type="checkbox" id="cad_situacao" style="cursor: pointer;">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- FIM MODAL CADASTRAR  -->
+
     <script src="assets/js/Funcoes.Feitas.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            CarregarTabela();
             let input_date = document.querySelectorAll("input[type='date']")
             input_date.forEach(elementoData => {
                 elementoData.value = formatDate("");
             });
         });
 
-        document.getElementById("btn-pesquisa").addEventListener("click", ()=>{
-            if(document.getElementById("container-pesquisa").classList.contains("d-none")){
-                document.getElementById("container-pesquisa").style.opacity = "1"
-                document.getElementById("container-pesquisa").classList.remove("d-none")
-            }else{
-                document.getElementById("container-pesquisa").style.opacity="0"
-                document.getElementById("container-pesquisa").classList.add("d-none") 
+        document.getElementById("btn-pesquisa").addEventListener("click", () => {
+            document.getElementById("container-pesquisa").classList.toggle("d-none")
+        });
+
+        document.getElementById("cad_parcelado").addEventListener("click", ()=>{
+            if(document.getElementById("cad_fixa").checked === true){
+                document.getElementById("cad_fixa").checked = false;
             }
         });
+
+        document.getElementById("cad_fixa").addEventListener("click", ()=>{
+            if(document.getElementById("cad_parcelado").checked === true){
+                document.getElementById("cad_parcelado").checked = false;
+            }
+        });
+
     </script>
+    <script src="assets/js/Funcoes/Despesa.js"></script>
 </div><!-- page-inner -->
