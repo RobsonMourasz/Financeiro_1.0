@@ -192,7 +192,7 @@ if (isset($_SESSION['SessaoAtiva']) && $_SESSION['SessaoAtiva'] === "S") { ?>
           </div> <!--main-header-logo-->
 
         </div> <!--main-header-->
-        <div class="tela-carregamento d-none"><div class="carregando-icone"> <!-- carregando-icone --> </div></div> <!-- tela-carregamento -->
+        <div id="tela-carregamento" class="tela-carregamento d-none"><div class="carregando-icone"> <!-- carregando-icone --> </div></div> <!-- tela-carregamento -->
 
         <div class="container">
           

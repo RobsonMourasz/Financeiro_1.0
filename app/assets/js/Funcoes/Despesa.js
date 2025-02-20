@@ -1,7 +1,6 @@
 async function CarregarTabela() {
-    document.querySelector(".tela-carregamento").classList.remove("d-none");
-    alert("removeu d-none")
-    
+    document.getElementById("tela-carregamento").classList.remove("d-none");
+   
     let formData = new FormData(document.getElementById("formPesquisar"));
     formData.append("Requisicao", "Pesquisar");
 
@@ -11,6 +10,6 @@ async function CarregarTabela() {
     });
 
     if (response.ok){
-        //document.querySelector(".tela-carregamento").classList.toggle("d-none");
+        document.querySelector(".tela-carregamento").classList.toggle("d-none");
     }
 }
