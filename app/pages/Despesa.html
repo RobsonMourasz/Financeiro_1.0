@@ -18,7 +18,7 @@
             </div>
         </div>
         <div id="container-pesquisa" class="container bg-dark d-none container-pesquisa">
-            <form id="formPesquisar" class="row text-white bg-dark opacity-75 p-2 d-flex flex-row justify-content-between mx-2">
+            <form id="formPesquisar" class="row text-white bg-dark opacity-75 p-2 d-flex flex-row justify-content-between mx-2" method="POST">
                 <div class="col-10 col-md-3 m-2">
                     <small class="label-input-focus">Data Inicial</small>
                     <input type="date" name="data_inicial" id="data_inicial" class="form-control">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-10 col-md-3 m-2">
                     <small class="label-input-focus">Situação</small>
-                    <select name="Confirmada" id="pesqConfirmada" class="form-control">
+                    <select name="Situacao" id="pesqConfirmada" class="form-control">
                         <option value="" selected>Todos</option>
                         <option value="N">Aberto</option>
                         <option value="S">Confirmado</option>
@@ -41,15 +41,36 @@
                 </div>
                 <div class="col-10 col-md-3 m-2">
                     <small class="label-input-focus">Categoria</small>
-                    <select name="situacao" id="pesqCa" class="form-control">
-                        <option value="todos" selected>Todos</option>
+                    <select name="Categoria" id="pesqCat" class="form-control" id-sub = "">
+                        <option value="" selected>Todos</option>
                     </select>
                 </div>
                 <div class="col-10 col-md-3 my-auto pt-4 d-flex justify-content-end .align-items-center">
-                    <button class="btn btn-danger">Pesquisar</button>
+                    <input type="submit" class="btn btn-danger" value="Pesquisar">
                 </div>
             </form>
         </div> <!-- container form-pesquisa -->
+
+        <div class="row">
+            <div class="col table-responsive-sm table-responsive-xl">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Vencimento</th>
+                            <th scope="col">Valor R$</th>
+                            <th scope="col">Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                    <tfoot  id="tfoot">
+
+                    </tfoot>
+                </table>
+            </div>
+        </div>
 
     </div><!-- row page-inner-->
 
@@ -71,7 +92,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="formCadastro" method="post">
-                        <small id="alertaCadastro-mensagem" align="center"></small>
+                        <small id="alertaCadastro-mensagem" align="center" role="alert"></small>
 
                         <div class="col">
                             <div class="row input-group mb-3 d-flex">
@@ -126,11 +147,13 @@
     <script src="assets/js/Funcoes.Feitas.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            CarregarTabela();
             let input_date = document.querySelectorAll("input[type='date']")
             input_date.forEach(elementoData => {
                 elementoData.value = formatDate("");
             });
+            document.getElementById("data_inicial").value = getDataInput("Entrada");
+            document.getElementById("data_final").value = getDataInput("");;
+            CarregarTabela();
         });
 
         document.getElementById("btn-pesquisa").addEventListener("click", () => {
@@ -148,6 +171,8 @@
                 document.getElementById("cad_parcelado").checked = false;
             }
         });
+
+
 
     </script>
     <script src="assets/js/Funcoes/Despesa.js"></script>

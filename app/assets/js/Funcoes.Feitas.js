@@ -123,6 +123,36 @@ function timeTempParaDate(date) {
 }
 /* FORMATAR DATA */
 
+/* CONFIGURAR PARA CAMPOS DATA PEGAR DIA 01 E DATA FINAL PEGAR 28 , 29 ,30 ,31  */
+function getDataInput(EntradaSaida) {
+    
+    const today = new Date();
+    const month = today.getMonth(); // 0-11 (Janeiro = 0, Fevereiro = 1, etc)
+    const year = today.getFullYear();
+
+    if (EntradaSaida === "Entrada"){
+        const startDate = new Date(year, month, 1);
+        let tempDia = startDate.getDate();
+        let tempMes = startDate.getMonth() + 1;
+        const tempAno = startDate.getFullYear();
+        tempDia = tempDia < 10 ? "0" + tempDia : tempDia;
+        tempMes = tempMes < 10 ? "0" + tempMes : tempMes;
+        return `${tempAno}-${tempMes}-${tempDia}`
+
+    }else{
+        const endDate = new Date(year, month + 1, 0);
+        let tempDia = endDate.getDate();
+        let tempMes = endDate.getMonth() + 1;
+        const tempAno = endDate.getFullYear();
+        tempDia = tempDia < 10 ? "0" + tempDia : tempDia;
+        tempMes = tempMes < 10 ? "0" + tempMes : tempMes;
+        return `${tempAno}-${tempMes}-${tempDia}`
+
+    }
+
+}
+/* CONFIGURAR PARA CAMPOS DATA PEGAR DIA 01 E DATA FINAL PEGAR 28 , 29 ,30 ,31  */
+
 function TelaAvisos(parametro, mensagem) {
 
     if (document.getElementById("alerta").classList.contains("d-none")) {
